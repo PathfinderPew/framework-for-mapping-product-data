@@ -11,28 +11,28 @@ def fetch_netsuite_data(file='Test Shopify Sheet.xlsx'):
         output_df = pd.read_excel(file, engine='openpyxl')
         print(f"Data successfully read from {file}")
         
-        # Step 2: Convert column names to lowercase
-        output_df.columns = output_df.columns.str.lower()
+        # Optional: Print column names for verification
+        print("Columns in DataFrame:", output_df.columns.tolist())
         
-        # Step 3: Ensure 'price' is numeric
-        output_df['price'] = pd.to_numeric(output_df['price'], errors='coerce')
+        # Step 2: Ensure 'Variant Price' is numeric
+        output_df['Variant Price'] = pd.to_numeric(output_df['Variant Price'], errors='coerce')
         
-        # Step 4: Ensure 'sku', 'name', and 'description' are strings
-        output_df['sku'] = output_df['sku'].astype(str)
-        output_df['name'] = output_df['name'].astype(str)
-        output_df['description'] = output_df['description'].astype(str)
+        # Step 3: Ensure key columns are of correct data types
+        output_df['Variant SKU'] = output_df['Variant SKU'].astype(str)
+        output_df['Title'] = output_df['Title'].astype(str)
+        output_df['Body (HTML)'] = output_df['Body (HTML)'].astype(str)
         
-        # Step 5: Handle missing data
-        # Drop rows where 'sku' or 'name' is missing
-        output_df.dropna(subset=['sku', 'name'], inplace=True)
+        # Step 4: Handle missing data
+        # Drop rows where 'Variant SKU' or 'Title' is missing
+        output_df.dropna(subset=['Variant SKU', 'Title'], inplace=True)
         
-        # Fill missing 'price' values with 0
-        output_df['price'] = output_df['price'].fillna(0)
+        # Fill missing 'Variant Price' values with 0
+        output_df['Variant Price'] = output_df['Variant Price'].fillna(0)
         
-        # Fill missing 'description' with an empty string
-        output_df['description'] = output_df['description'].fillna('')
+        # Fill missing 'Body (HTML)' with an empty string
+        output_df['Body (HTML)'] = output_df['Body (HTML)'].fillna('')
         
-        # Step 6: Reset the index after dropping rows
+        # Step 5: Reset the index after dropping rows
         output_df.reset_index(drop=True, inplace=True)
         
         # Optional: Print data types and a preview for verification
@@ -46,5 +46,5 @@ def fetch_netsuite_data(file='Test Shopify Sheet.xlsx'):
         print(f"The file {file} was not found.")
         return pd.DataFrame()
     except Exception as e:
-        print(f"An error occurred while reading {file}: {e}")
+        print(f"An error occurred while processing {file}: {e}")
         return pd.DataFrame()
