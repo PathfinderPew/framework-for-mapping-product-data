@@ -6,11 +6,11 @@ from export_util import export_to_csv
 
 def main():
     # Fetch and clean data from output.xlsx
-    output_data = fetch_netsuite_data(file='output.xlsx')
+    output_data = fetch_netsuite_data(file='Test Shopify Sheet.xlsx')
 
     # Verify that data was fetched successfully
     if output_data.empty:
-        print("No data fetched from output.xlsx.")
+        print("No data fetched from Test Shopify Sheet.xlsx.")
         return  # Exit if no data is available
 
     # Map the data to Shopify format

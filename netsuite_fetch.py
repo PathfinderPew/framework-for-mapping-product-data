@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-def fetch_netsuite_data(file='output.xlsx'):
+def fetch_netsuite_data(file='Test Shopify Sheet.xlsx'):
     """
     Fetches product data from an Excel (.xlsx) file and ensures data compatibility.
     """
