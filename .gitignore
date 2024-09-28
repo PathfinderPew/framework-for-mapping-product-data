@@ -56,3 +56,7 @@ shopify_import.csv
 # Miscellaneous
 *.swp
 *~
+
+# .gitignore
+
+.env
