@@ -1,5 +1,3 @@
-# adapters/zoey_adapter.py
-
 import pandas as pd
 import logging
 import os
@@ -62,11 +60,11 @@ def export_to_zoey(df):
             }
 
             # Use shared `make_request` function to handle the HTTP POST request
-            response = make_request("POST", api_url, headers=headers, data=product_data)
+            response = make_request("POST", api_url, headers=headers, json=product_data)
 
             # Check if response is None before attempting to access its attributes
             if response is None:
-                logging.error(f"Request failed for product '{row.get('Title', 'N/A')}'.")
+                logging.error(f"Request failed for product '{row.get('Title', 'N/A')}'. No response received from Zoey.")
                 return False
 
             # Check the response status code and log the result

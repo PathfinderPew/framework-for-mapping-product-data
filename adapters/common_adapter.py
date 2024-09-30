@@ -25,12 +25,12 @@ def make_request(method, url, headers=None, params=None, data=None):
         data (dict): Request body for POST/PUT requests.
     
     Returns:
-        dict: Parsed JSON response or raises an error.
+        response: The full HTTP response object.
     """
     try:
         response = requests.request(method, url, headers=headers, params=params, json=data)
         response.raise_for_status()
-        return response.json()
+        return response  # Return the full response object
     except requests.exceptions.HTTPError as http_err:
         logging.error(f"HTTP error occurred: {http_err}")
         raise
