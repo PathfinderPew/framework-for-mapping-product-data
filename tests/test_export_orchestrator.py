@@ -17,11 +17,18 @@ class TestExportOrchestrator(unittest.TestCase):
 
     @patch('orchestrator.export_orchestrator.pd.ExcelWriter')
     def test_export_to_excel_success(self, mock_excel_writer):
+        # Simulate successful behavior of the ExcelWriter context manager
+        mock_writer_instance = MagicMock()
+        mock_excel_writer.return_value = mock_writer_instance
         data = {'Column1': [1, 2, 3], 'Column2': ['A', 'B', 'C']}
         df = pd.DataFrame(data)
         result = export_to_excel(df, filename='test_export.xlsx')
+        
+        # Assertions for mock interactions and function success
         self.assertTrue(result)
         mock_excel_writer.assert_called_once()
+        mock_writer_instance.__enter__.assert_called_once()
+        mock_writer_instance.__exit__.assert_called_once()
 
     @patch('orchestrator.export_orchestrator.pd.DataFrame.to_json')
     def test_export_to_json_success(self, mock_to_json):

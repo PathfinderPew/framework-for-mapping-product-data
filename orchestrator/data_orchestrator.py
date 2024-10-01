@@ -7,7 +7,6 @@ from data_mapping import shopify_mapping, netsuite_mapping, zoey_mapping
 # Configure logging to capture debug and info messages
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
 def sync_netsuite_to_shopify():
     """
     Synchronizes product data from NetSuite to Shopify.
@@ -20,8 +19,8 @@ def sync_netsuite_to_shopify():
         logging.warning("No data fetched from NetSuite. Synchronization aborted.")
         return
 
-    # Step 2: Map NetSuite data to Shopify format
-    shopify_ready_data = netsuite_mapping.map_to_shopify(netsuite_data)
+    # Step 2: Map NetSuite data to Shopify format (Placeholder for mapping logic)
+    shopify_ready_data = netsuite_data  
     if shopify_ready_data.empty:
         logging.warning("Mapping to Shopify format failed. No data to upload.")
         return
@@ -47,7 +46,7 @@ def sync_netsuite_to_zoey():
         return
 
     # Step 2: Map NetSuite data to Zoey format
-    zoey_ready_data = netsuite_mapping.map_to_zoey(netsuite_data)
+    zoey_ready_data = zoey_mapping.map_output_to_zoey_csv(netsuite_data)
     if zoey_ready_data.empty:
         logging.warning("Mapping to Zoey format failed. No data to export.")
         return
@@ -73,7 +72,7 @@ def sync_shopify_to_zoey():
         return
 
     # Step 2: Map Shopify data to Zoey format
-    zoey_ready_data = shopify_mapping.map_to_zoey(shopify_data)
+    zoey_ready_data = zoey_mapping.map_output_to_zoey_csv(shopify_data)
     if zoey_ready_data.empty:
         logging.warning("Mapping to Zoey format failed. No data to export.")
         return

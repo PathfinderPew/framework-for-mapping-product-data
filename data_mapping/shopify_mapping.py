@@ -1,14 +1,17 @@
 # data_mapping/shopify_mapping.py
 
-def map_to_shopify(df):
-    """
-    Maps NetSuite data to Shopify format.
+import pandas as pd
 
+# Placeholder map_to_zoey function
+def map_to_zoey(df):
+    """
+    Maps the given DataFrame to the Zoey format.
+    
     Parameters:
-        df (pandas.DataFrame): DataFrame containing NetSuite product data.
-
+        df (pandas.DataFrame): DataFrame containing product information.
+        
     Returns:
-        pandas.DataFrame: DataFrame formatted for Shopify.
+        pandas.DataFrame: Transformed DataFrame for Zoey.
     """
-    # For now, return the same DataFrame (stub function)
+    # Placeholder transformation logic (Adjust this as needed)
     return df
