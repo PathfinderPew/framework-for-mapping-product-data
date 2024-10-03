@@ -83,4 +83,22 @@ API keys missing? Make sure your .env file has the right keys and they’re corr
 Check the logs for more details if something seems off!
 
 
+# TODO:
+
+usage should look like this: 
+```bash
+
+python convert_product.py <source_format> <destination_format> <source_file_path> <output_file_path>
+
+```
+
+Example: 
+
+```bash
+
+python convert_product.py shopify netsuite ../shopify/shopify_products.xlsx ../outputs/netsuite_products.xlsx
+
+```
+
+
 
