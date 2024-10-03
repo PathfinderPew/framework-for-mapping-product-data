@@ -43,7 +43,7 @@ Make sure your data matches the expected structure. Check out the data_mapping f
 Run the main script to start processing your data:
 
 
-```python
+```bash
 python main_script.py
 ```
 
@@ -66,7 +66,9 @@ Deploy the framework to AWS Lambda for automatic updates. You can containerize i
 Running the Tests
 Run all the tests to make sure everything’s working:
 
-```python
+
+
+```bash
 python -m unittest discover -v tests
 ```
 
