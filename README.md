@@ -27,7 +27,11 @@ Getting Started
 1. Set Up
 First, make sure you have Python 3.x installed, and then install all the required packages:
 
+
+```bash
 pip install -r requirements.txt
+```
+
 
 2. Configure Your Environment
 Create a .env file in the root folder and add your API keys and configurations. For example:
@@ -42,7 +46,10 @@ Make sure your data matches the expected structure. Check out the data_mapping f
 4. Run the Framework
 Run the main script to start processing your data:
 
+
+```bash
 python main_script.py
+```
 
 5. Import to Shopify or Zoey
 For Shopify:
@@ -63,9 +70,35 @@ Deploy the framework to AWS Lambda for automatic updates. You can containerize i
 Running the Tests
 Run all the tests to make sure everything’s working:
 
+
+
+```bash
 python -m unittest discover -v tests
+```
+
 
 Troubleshooting
 Data isn’t mapping correctly? Double-check the column names in your source file.
 API keys missing? Make sure your .env file has the right keys and they’re correctly loaded.
 Check the logs for more details if something seems off!
+
+
+# TODO:
+
+usage should look like this: 
+```bash
+
+python convert_product.py <source_format> <destination_format> <source_file_path> <output_file_path>
+
+```
+
+Example: 
+
+```bash
+
+python convert_product.py shopify netsuite ../shopify/shopify_products.xlsx ../outputs/netsuite_products.xlsx
+
+```
+
+
+
