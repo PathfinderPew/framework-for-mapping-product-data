@@ -42,7 +42,10 @@ Make sure your data matches the expected structure. Check out the data_mapping f
 4. Run the Framework
 Run the main script to start processing your data:
 
+
+```python
 python main_script.py
+```
 
 5. Import to Shopify or Zoey
 For Shopify:
@@ -63,9 +66,15 @@ Deploy the framework to AWS Lambda for automatic updates. You can containerize i
 Running the Tests
 Run all the tests to make sure everything’s working:
 
+```python
 python -m unittest discover -v tests
+```
+
 
 Troubleshooting
 Data isn’t mapping correctly? Double-check the column names in your source file.
 API keys missing? Make sure your .env file has the right keys and they’re correctly loaded.
 Check the logs for more details if something seems off!
+
+
+
