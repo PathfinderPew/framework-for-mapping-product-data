@@ -27,7 +27,11 @@ Getting Started
 1. Set Up
 First, make sure you have Python 3.x installed, and then install all the required packages:
 
+
+```bash
 pip install -r requirements.txt
+```
+
 
 2. Configure Your Environment
 Create a .env file in the root folder and add your API keys and configurations. For example:
