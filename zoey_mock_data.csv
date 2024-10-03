@@ -1,0 +1,4 @@
+sku,_type,name,description,price,status,qty,visibility,use_config_manage_stock,is_in_stock,manage_stock,tax_class_id,weight,barcode,brand,color,url_key,image,_media_image,category_ids,use_config_enable_qty_inc,enable_qty_increments,use_config_qty_increments,qty_increments,zoey_add_to_cart_qty
+SKU001,simple,Product A,Description of Product A,10.99,1,100,4,1,1,1,2,0.5,123456789012,Brand A,Red,product-a,image_a.jpg,image_a.jpg,Shop/Accessories/Earrings,1,1,1,1,1
+SKU002,simple,Product B,Description of Product B,15.49,2,50,4,1,1,1,2,1.0,987654321098,Brand B,Blue,product-b,image_b.jpg,image_b.jpg,Shop/Apparel/Shirts,1,0,1,2,1
+SKU003,configurable,Product C,Description of Product C,0.0,1,0,1,0,0,0,2,0.0,,Brand C,,product-c,,image_c.jpg,,0,0,0,0,0

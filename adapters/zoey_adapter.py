@@ -18,7 +18,7 @@ def export_to_zoey(df):
         bool: True if export is successful, False otherwise.
     """
     try:
-        # Replace with Zoey's actual API endpoint for product creation
+        # Set Zoey's API endpoint for product creation
         api_url = "https://api.zoey.com/v1/products"
 
         # Retrieve API key from environment variables
@@ -59,8 +59,9 @@ def export_to_zoey(df):
                 ]
             }
 
-            # Use shared `make_request` function to handle the HTTP POST request
-            response = make_request("POST", api_url, headers=headers, json=product_data)
+            # Use shared `make_request` function to handle the HTTP POST request.
+            # Here, we're using `data=product_data` instead of `json=product_data` to match the signature.
+            response = make_request("POST", api_url, headers=headers, data=product_data)
 
             # Check if response is None before attempting to access its attributes
             if response is None:

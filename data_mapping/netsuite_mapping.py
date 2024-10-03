@@ -1,5 +1,3 @@
-# data_mapping/netsuite_mapping.py
-
 import pandas as pd
 import logging
 
@@ -14,21 +12,20 @@ def map_to_shopify(netsuite_df):
         pandas.DataFrame: Mapped DataFrame formatted for Shopify.
     """
     try:
-        # Handle missing columns and map NetSuite columns to Shopify columns
+        # Convert all columns to pandas.Series to handle missing values correctly
         shopify_df = pd.DataFrame()
-        shopify_df['Handle'] = netsuite_df.get('title', pd.Series()).str.lower().str.replace(' ', '-').str.replace('/', '-')
-        shopify_df['Title'] = netsuite_df.get('title', '')
-        shopify_df['Body (HTML)'] = netsuite_df.get('description', '')  # Use description or empty if not present
-        shopify_df['Vendor'] = netsuite_df.get('vendor', 'Unknown')
-        shopify_df['Type'] = netsuite_df.get('type', 'Product')
-        shopify_df['Tags'] = netsuite_df.get('tags', '')
-        shopify_df['Published'] = True
-        shopify_df['Variant SKU'] = netsuite_df.get('variant sku', '')
-        shopify_df['Variant Price'] = netsuite_df.get('variant price', 0.0).fillna(0.0)  # Fill NaN values with 0.0
-        shopify_df['Variant Inventory Qty'] = netsuite_df.get('inventory_qty', 0).fillna(0)  # Ensure no NaN in inventory
-        shopify_df['Variant Barcode'] = netsuite_df.get('barcode', '')
+        shopify_df['Handle'] = pd.Series(netsuite_df.get('title', '')).str.lower().str.replace(' ', '-').str.replace('/', '-')
+        shopify_df['Title'] = pd.Series(netsuite_df.get('title', ''))
+        shopify_df['Body (HTML)'] = pd.Series(netsuite_df.get('description', ''))  # Use description or empty if not present
+        shopify_df['Vendor'] = pd.Series(netsuite_df.get('vendor', 'Unknown'))
+        shopify_df['Type'] = pd.Series(netsuite_df.get('type', 'Product'))
+        shopify_df['Tags'] = pd.Series(netsuite_df.get('tags', ''))
+        shopify_df['Published'] = pd.Series([True] * len(shopify_df))
+        shopify_df['Variant SKU'] = pd.Series(netsuite_df.get('variant sku', ''))
+        shopify_df['Variant Price'] = pd.Series(netsuite_df.get('variant price', 0.0)).fillna(0.0)  # Fill NaN values with 0.0
+        shopify_df['Variant Inventory Qty'] = pd.Series(netsuite_df.get('inventory_qty', 0)).fillna(0)  # Ensure no NaN in inventory
+        shopify_df['Variant Barcode'] = pd.Series(netsuite_df.get('barcode', ''))
 
-        # Log the mapping details
         logging.info(f"Mapping {len(shopify_df)} products from NetSuite to Shopify format completed successfully.")
         return shopify_df
 
@@ -51,23 +48,22 @@ def map_to_zoey(netsuite_df):
         pandas.DataFrame: Mapped DataFrame formatted for Zoey.
     """
     try:
-        # Handle missing columns and map NetSuite columns to Zoey columns
+        # Convert all columns to pandas.Series to handle missing values correctly
         zoey_df = pd.DataFrame()
-        zoey_df['Handle'] = netsuite_df.get('title', pd.Series()).str.lower().str.replace(' ', '-').str.replace('/', '-')
-        zoey_df['Title'] = netsuite_df.get('title', '')
-        zoey_df['Description'] = netsuite_df.get('description', '')
-        zoey_df['Vendor'] = netsuite_df.get('vendor', 'Unknown')
-        zoey_df['Type'] = netsuite_df.get('type', 'Product')
-        zoey_df['Tags'] = netsuite_df.get('tags', '')
-        zoey_df['Published'] = True
-        zoey_df['SKU'] = netsuite_df.get('variant sku', '')
-        zoey_df['Price'] = netsuite_df.get('variant price', 0.0).fillna(0.0)  # Fill NaN values with 0.0
-        zoey_df['Inventory Quantity'] = netsuite_df.get('inventory_qty', 0).fillna(0)  # Ensure no NaN in inventory
-        zoey_df['Barcode'] = netsuite_df.get('barcode', '')
-        zoey_df['Image URL'] = netsuite_df.get('image_url', '')
-        zoey_df['Image Alt Text'] = netsuite_df.get('image_alt_text', '')
+        zoey_df['Handle'] = pd.Series(netsuite_df.get('title', '')).str.lower().str.replace(' ', '-').str.replace('/', '-')
+        zoey_df['Title'] = pd.Series(netsuite_df.get('title', ''))
+        zoey_df['Description'] = pd.Series(netsuite_df.get('description', ''))
+        zoey_df['Vendor'] = pd.Series(netsuite_df.get('vendor', 'Unknown'))
+        zoey_df['Type'] = pd.Series(netsuite_df.get('type', 'Product'))
+        zoey_df['Tags'] = pd.Series(netsuite_df.get('tags', ''))
+        zoey_df['Published'] = pd.Series([True] * len(zoey_df))
+        zoey_df['SKU'] = pd.Series(netsuite_df.get('variant sku', ''))
+        zoey_df['Price'] = pd.Series(netsuite_df.get('variant price', 0.0)).fillna(0.0)  # Fill NaN values with 0.0
+        zoey_df['Inventory Quantity'] = pd.Series(netsuite_df.get('inventory_qty', 0)).fillna(0)  # Ensure no NaN in inventory
+        zoey_df['Barcode'] = pd.Series(netsuite_df.get('barcode', ''))
+        zoey_df['Image URL'] = pd.Series(netsuite_df.get('image_url', ''))
+        zoey_df['Image Alt Text'] = pd.Series(netsuite_df.get('image_alt_text', ''))
 
-        # Log the mapping details
         logging.info(f"Mapping {len(zoey_df)} products from NetSuite to Zoey format completed successfully.")
         return zoey_df
 

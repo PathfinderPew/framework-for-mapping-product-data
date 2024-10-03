@@ -1,11 +1,16 @@
-# common_mapping.py
-
 import pandas as pd
 import re
+import logging
 
 def clean_html(html_content):
     """
     Cleans HTML content by removing HTML tags and stripping whitespace.
+
+    Parameters:
+        html_content (str): HTML content to clean.
+
+    Returns:
+        str: Cleaned text without HTML tags.
     """
     if not html_content:
         return ""
@@ -28,7 +33,13 @@ def normalize_column_names(df):
     Returns:
         pandas.DataFrame: DataFrame with normalized column names.
     """
-    df.columns = df.columns.str.lower().str.replace(' ', '_').str.replace('[()]', '', regex=True)
+    df.columns = (
+        df.columns
+        .str.lower()
+        .str.replace(' ', '_')
+        .str.replace('[()]', '', regex=True)
+    )
+    logging.info(f"Normalized columns: {df.columns.tolist()}")
     return df
 
 def fill_missing_values(df):
@@ -41,10 +52,23 @@ def fill_missing_values(df):
     Returns:
         pandas.DataFrame: DataFrame with filled values.
     """
-    object_columns = df.select_dtypes(include='object').columns
-    numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
-    
-    df[object_columns] = df[object_columns].fillna('')
-    df[numeric_columns] = df[numeric_columns].fillna(0)
-    
-    return df
+    try:
+        # Isolate columns based on data type
+        object_columns = df.select_dtypes(include='object').columns
+        numeric_columns = df.select_dtypes(include=['float64', 'int64']).columns
+
+        # Fill missing values for object columns with empty strings, using .loc to avoid misalignment
+        for col in object_columns:
+            if col in df.columns:
+                df.loc[:, col] = df[col].fillna('')
+        
+        # Fill missing values for numeric columns with 0, using .loc to ensure alignment
+        for col in numeric_columns:
+            if col in df.columns:
+                df.loc[:, col] = df[col].fillna(0)
+
+        logging.info(f"Missing values filled. DataFrame shape: {df.shape}")
+        return df
+    except Exception as e:
+        logging.error(f"An error occurred while filling missing values: {e}")
+        raise
